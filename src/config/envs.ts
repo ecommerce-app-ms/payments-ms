@@ -12,6 +12,7 @@ interface EnvVars {
   STRIPE_SUCCESS_URL: string;
   STRIPE_CANCEL_URL: string;
   STRIPE_ENDPOINT_SECRET: string;
+  NAST_SERVERS: string[];
 }
 
 const envSchema = joi
@@ -21,6 +22,7 @@ const envSchema = joi
     STRIPE_SUCCESS_URL: joi.string().required(),
     STRIPE_CANCEL_URL: joi.string().required(),
     STRIPE_ENDPOINT_SECRET: joi.string().required(),
+    NAST_SERVERS: joi.array().items(joi.string().required()),
     //PRODUCTS_MICROSERVICES_HOST: joi.string().required(),
     //PRODUCTS_MICROSERVICES_PORT: joi.number().required(),
     //ORDERS_MICROSERVICES_HOST: joi.string().required(),
@@ -50,5 +52,5 @@ export const envs = {
   //products_microservices_port: envVars.PRODUCTS_MICROSERVICES_PORT,
   //orders_microservices_host: envVars.ORDERS_MICROSERVICES_HOST,
   //orders_microservices_port: envVars.ORDERS_MICROSERVICES_PORT,
-  // nast_servers: envVars.NAST_SERVERS,
+  nast_servers: envVars.NAST_SERVERS,
 };
