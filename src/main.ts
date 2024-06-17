@@ -15,12 +15,15 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.NATS,
-    options: {
-      servers: envs.nast_servers,
+  app.connectMicroservice<MicroserviceOptions>(
+    {
+      transport: Transport.NATS,
+      options: {
+        servers: envs.nast_servers,
+      },
     },
-  });
+    { inheritAppConfig: true },
+  );
   await app.startAllMicroservices();
   await app.listen(envs.port);
   logger.log(`payments running on port ${envs.port}`);
